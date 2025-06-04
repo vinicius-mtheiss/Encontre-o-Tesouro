@@ -64,12 +64,50 @@ public class Jogo {
                 for (int linha = 0; linha < tabuleiro.length; linha++) {
                     for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
                         if (tabuleiro[linha][coluna]== 'P') {
-                            tabuleiro[linha+1][coluna]= 'P'; 
+                            tabuleiro[linha-1][coluna]= 'P'; 
                             tabuleiro[linha][coluna] = '-';
                         }
                     }
-                    break;
+                }
+                break;
+                
+                case "baixo":
+                    for (int linha = 0; linha < tabuleiro.length; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                            if (tabuleiro[linha][coluna]== 'P') {
+                                tabuleiro[linha+1][coluna]= 'P'; 
+                                tabuleiro[linha][coluna] = '-';
+                            }
+                        }
+                    }
+                break;
+
+                case "esquerda":
+                    for (int linha = 0; linha < tabuleiro.length; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                            if (tabuleiro[linha][coluna]== 'P') {
+                                tabuleiro[linha][coluna-1]= 'P'; 
+                                tabuleiro[linha][coluna] = '-';
+                            }
+                        }
+                    }
+                break;
+
+                case "direita":
+                    for (int linha = 0; linha < tabuleiro.length; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                            if (tabuleiro[linha][coluna]== 'P') {
+                                tabuleiro[linha][coluna+1]= 'P'; 
+                                tabuleiro[linha][coluna] = '-';
+                            }
+                        }
+                    }
+                break;
+
                 default:
+                System.out.println("Comando invalido, insira um movimento valido");
+                break;
+            }
                     System.out.println("Comando invalido, insira um movimento valido");
             }
         } while (true);
