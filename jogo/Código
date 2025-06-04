@@ -1,0 +1,72 @@
+
+import java.util.Scanner;
+import java.util.Set;
+import jdk.swing.interop.LightweightContentWrapper;
+
+public class Jogo {
+ 
+    private char[][] tabuleiro;
+    private char[][] tabuleiroTesouro;
+    Scanner scan = new Scanner(System.in);
+
+    public void iniciar() {
+        tabuleiro = new char[8][8];
+        tabuleiroTesouro = new char[8][8];
+        popularTabuleiro();
+        colocarTesouro();
+        colocarJogador();
+        tabuleiroIniciar();
+        //....
+    }
+    
+    private void colocarTesouro() {
+        char tesouro = 'T';
+        int linha = 0;
+        int coluna = 0;
+        do { 
+        linha = (int) (Math.random() * 8);
+        coluna = (int) (Math.random() * 8);
+        tabuleiro[linha][coluna] = tesouro;
+        tabuleiroTesouro[linha][coluna] = tesouro;
+        } while (linha==0 && coluna == 0);
+    }
+
+    private void popularTabuleiro(){
+        for (int linha = 0; linha < tabuleiro.length; linha++) {
+            for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                tabuleiro[linha][coluna] = '-';
+            }
+            System.out.println();
+        }
+    }
+
+    private void tabuleiroIniciar(){
+        for (int linha = 0; linha < tabuleiro.length; linha++) {
+            for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                System.out.print(tabuleiro[linha][coluna]);
+            }
+            System.out.println();
+        }
+    }
+
+    private void colocarJogador(){
+        char jogador = 'P';
+        tabuleiro[0][0] = jogador;
+    }
+
+    private void movimento(Scanner scan){
+        String movimento = "";
+        do { 
+            System.out.println("Escolha um movimento para ser feito: Cima, baixo, esquerda, direita");
+            movimento = scan.next().toLowerCase();
+            switch (movimento) {
+                case "cima":
+                
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } while (true);
+
+    }
+}
