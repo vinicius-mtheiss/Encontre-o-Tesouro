@@ -56,6 +56,7 @@ public class Jogo {
 
     private void movimento(Scanner scan){
         String movimento = "";
+        boolean achou = false;
         do { 
             System.out.println("Escolha um movimento para ser feito: Cima, baixo, esquerda, direita");
             movimento = scan.next().toLowerCase();
@@ -110,7 +111,7 @@ public class Jogo {
             }
                     System.out.println("Comando invalido, insira um movimento valido");
             }
-        } while (true);
+        } while (achou);
 
     }
 }
