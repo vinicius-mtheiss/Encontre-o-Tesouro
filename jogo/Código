@@ -1,7 +1,5 @@
 
 import java.util.Scanner;
-import java.util.Set;
-import jdk.swing.interop.LightweightContentWrapper;
 
 public class Jogo {
  
@@ -16,6 +14,7 @@ public class Jogo {
         colocarTesouro();
         colocarJogador();
         tabuleiroIniciar();
+        movimento(scan);
         //....
     }
     
@@ -62,56 +61,85 @@ public class Jogo {
             movimento = scan.next().toLowerCase();
             switch (movimento) {
                 case "cima":
-                for (int linha = 0; linha < tabuleiro.length; linha++) {
-                    for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
-                        if (tabuleiro[linha][coluna]== 'P') {
-                            tabuleiro[linha-1][coluna]= 'P'; 
-                            tabuleiro[linha][coluna] = '-';
+                    for (int linha = 0; linha < tabuleiro.length; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                            if (tabuleiro[linha][coluna] == 'P') {
+                                if (linha - 1 >= 0) { 
+                                    tabuleiro[linha - 1][coluna] = 'P';
+                                    tabuleiro[linha][coluna] = '-';
+                                } else {
+                                    System.out.println("Movimento inválido!");
+                                }
+                                break;
+                            }
                         }
                     }
-                }
-                break;
-                
+                    break;
+    
                 case "baixo":
                     for (int linha = 0; linha < tabuleiro.length; linha++) {
                         for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
-                            if (tabuleiro[linha][coluna]== 'P') {
-                                tabuleiro[linha+1][coluna]= 'P'; 
-                                tabuleiro[linha][coluna] = '-';
+                            if (tabuleiro[linha][coluna] == 'P') {
+                                if (linha + 1 < tabuleiro.length) { 
+                                    tabuleiro[linha + 1][coluna] = 'P';
+                                    tabuleiro[linha][coluna] = '-';
+                                } else {
+                                    System.out.println("Movimento inválido!");
+                                }
+                                break;
                             }
                         }
                     }
-                break;
-
+                    break;
+    
                 case "esquerda":
                     for (int linha = 0; linha < tabuleiro.length; linha++) {
                         for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
-                            if (tabuleiro[linha][coluna]== 'P') {
-                                tabuleiro[linha][coluna-1]= 'P'; 
-                                tabuleiro[linha][coluna] = '-';
+                            if (tabuleiro[linha][coluna] == 'P') {
+                                if (coluna - 1 >= 0) { 
+                                    tabuleiro[linha][coluna - 1] = 'P';
+                                    tabuleiro[linha][coluna] = '-';
+                                } else {
+                                    System.out.println("Movimento inválido!");
+                                }
+                                break;
                             }
                         }
                     }
-                break;
-
+                    break;
+    
                 case "direita":
                     for (int linha = 0; linha < tabuleiro.length; linha++) {
                         for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
-                            if (tabuleiro[linha][coluna]== 'P') {
-                                tabuleiro[linha][coluna+1]= 'P'; 
-                                tabuleiro[linha][coluna] = '-';
+                            if (tabuleiro[linha][coluna] == 'P') {
+                                if (coluna + 1 < tabuleiro[0].length) { 
+                                    tabuleiro[linha][coluna + 1] = 'P';
+                                    tabuleiro[linha][coluna] = '-';
+                                } else {
+                                    System.out.println("Movimento inválido!");
+                                }
+                                break;
                             }
                         }
                     }
-                break;
-
+                    break;
+    
                 default:
-                System.out.println("Comando invalido, insira um movimento valido");
-                break;
+                    System.out.println("Comando inválido, insira um movimento válido");
+                    break;
             }
-                    System.out.println("Comando invalido, insira um movimento valido");
+    
+            
+            for (int linha = 0; linha < tabuleiro.length; linha++) {
+                for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                    if (tabuleiro[linha][coluna] == 'P' && tabuleiroTesouro[linha][coluna] == 'T') {
+                        System.out.println("Parabéns! Você encontrou o tesouro!");
+                        achou = true;
+                        break;
+                    }
+                }
+                if (achou) break;
             }
-        } while (achou);
-
+        } while (!achou); 
     }
 }
