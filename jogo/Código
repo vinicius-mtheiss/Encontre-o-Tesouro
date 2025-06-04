@@ -56,19 +56,22 @@ public class Jogo {
     private void movimento(Scanner scan){
         String movimento = "";
         boolean achou = false;
+        boolean  moveu = false;
         do { 
             System.out.println("Escolha um movimento para ser feito: Cima, baixo, esquerda, direita");
             movimento = scan.next().toLowerCase();
+            moveu=false;
             switch (movimento) {
                 case "cima":
-                    for (int linha = 0; linha < tabuleiro.length; linha++) {
-                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                    for (int linha = 0; linha < tabuleiro.length && !moveu; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length && !moveu; coluna++) {
                             if (tabuleiro[linha][coluna] == 'P') {
                                 if (linha - 1 >= 0) { 
                                     tabuleiro[linha - 1][coluna] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    moveu=true;
                                 } else {
-                                    System.out.println("Movimento inválido!");
+                                    System.out.println("Movimento inválido! Escolha outro movimento");
                                 }
                                 break;
                             }
@@ -77,30 +80,31 @@ public class Jogo {
                     break;
     
                 case "baixo":
-                    for (int linha = 0; linha < tabuleiro.length; linha++) {
-                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                    for (int linha = 0; linha < tabuleiro.length && !moveu; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length && !moveu; coluna++) {
                             if (tabuleiro[linha][coluna] == 'P') {
                                 if (linha + 1 < tabuleiro.length) { 
                                     tabuleiro[linha + 1][coluna] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    moveu=true;
                                 } else {
-                                    System.out.println("Movimento inválido!");
+                                    System.out.println("Movimento inválido! Escolha outro movimento");
                                 }
-                                break;
                             }
                         }
                     }
                     break;
     
                 case "esquerda":
-                    for (int linha = 0; linha < tabuleiro.length; linha++) {
-                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                    for (int linha = 0; linha < tabuleiro.length && !moveu; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length && !moveu; coluna++) {
                             if (tabuleiro[linha][coluna] == 'P') {
                                 if (coluna - 1 >= 0) { 
                                     tabuleiro[linha][coluna - 1] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    moveu=true;
                                 } else {
-                                    System.out.println("Movimento inválido!");
+                                    System.out.println("Movimento inválido! Escolha outro movimento");
                                 }
                                 break;
                             }
@@ -109,14 +113,15 @@ public class Jogo {
                     break;
     
                 case "direita":
-                    for (int linha = 0; linha < tabuleiro.length; linha++) {
-                        for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                    for (int linha = 0; linha < tabuleiro.length && !moveu; linha++) {
+                        for (int coluna = 0; coluna < tabuleiro[0].length && !moveu; coluna++) {
                             if (tabuleiro[linha][coluna] == 'P') {
                                 if (coluna + 1 < tabuleiro[0].length) { 
                                     tabuleiro[linha][coluna + 1] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    moveu=true;
                                 } else {
-                                    System.out.println("Movimento inválido!");
+                                    System.out.println("Movimento inválido! Escolha outro movimento");
                                 }
                                 break;
                             }
@@ -127,6 +132,9 @@ public class Jogo {
                 default:
                     System.out.println("Comando inválido, insira um movimento válido");
                     break;
+            }
+            if (moveu) {
+               tabuleiroIniciar(); 
             }
     
             
