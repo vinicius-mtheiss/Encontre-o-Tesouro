@@ -61,10 +61,16 @@ public class Jogo {
             movimento = scan.next().toLowerCase();
             switch (movimento) {
                 case "cima":
-                
+                for (int linha = 0; linha < tabuleiro.length; linha++) {
+                    for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
+                        if (tabuleiro[linha][coluna]== 'P') {
+                            tabuleiro[linha+1][coluna]= 'P'; 
+                            tabuleiro[linha][coluna] = '-';
+                        }
+                    }
                     break;
                 default:
-                    throw new AssertionError();
+                    System.out.println("Comando invalido, insira um movimento valido");
             }
         } while (true);
 
