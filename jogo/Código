@@ -7,7 +7,7 @@ public class Jogo {
     // Fiz uma outra matriz para registrar o percurso do jogador
     private char[][] caminho;
     // botei uma variavel para controlar se o tesouro foi encontrado
-    private boolean tesouroAchado = false;
+    private boolean tesouroAchado = true;
     Scanner scan = new Scanner(System.in);
 
     public void iniciar() {
@@ -69,6 +69,7 @@ public class Jogo {
         String movimento = "";
         boolean achou = false;
         boolean moveu = false;
+        String registrar = "";
         do { 
             System.out.println("Escolha um movimento para ser feito: Cima, baixo, esquerda, direita");
             movimento = scan.next().toLowerCase();
@@ -82,6 +83,7 @@ public class Jogo {
                                     caminho[linha][coluna] = '+';
                                     tabuleiro[linha - 1][coluna] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    registrar += movimento + ", ";
                                     moveu=true;
                                 } else {
                                     System.out.println("Movimento inválido! Escolha outro movimento");
@@ -101,6 +103,7 @@ public class Jogo {
                                     caminho[linha][coluna] = '+';
                                     tabuleiro[linha + 1][coluna] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    registrar += movimento + ", ";
                                     moveu = true;
                                 } else {
                                     System.out.println("Movimento inválido! Escolha outro movimento");
@@ -119,6 +122,7 @@ public class Jogo {
                                     caminho[linha][coluna] = '+';
                                     tabuleiro[linha][coluna - 1] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    registrar += movimento + ", ";
                                     moveu = true;
                                 } else {
                                     System.out.println("Movimento inválido! Escolha outro movimento");
@@ -138,6 +142,7 @@ public class Jogo {
                                     caminho[linha][coluna] = '+';
                                     tabuleiro[linha][coluna + 1] = 'P';
                                     tabuleiro[linha][coluna] = '-';
+                                    registrar += movimento + ", ";
                                     moveu = true;
                                 } else {
                                     System.out.println("Movimento inválido! Escolha outro movimento");
@@ -162,6 +167,7 @@ public class Jogo {
                 for (int coluna = 0; coluna < tabuleiro[0].length; coluna++) {
                     if (tabuleiro[linha][coluna] == 'P' && tabuleiroTesouro[linha][coluna] == 'T') {
                         System.out.println("Parabéns! Você encontrou o tesouro!");
+                        System.out.println(registrar);
                         achou = true;
                         tesouroAchado = true;
                         // Atualiza a célula atual para exibir o 'T' (revelando o tesouro) ao invés de deixar o P
